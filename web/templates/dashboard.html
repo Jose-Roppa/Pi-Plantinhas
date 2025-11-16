@@ -1,22 +1,41 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <title>Monitor de Umidade do Solo (ESP32)</title>
-    <meta http-equiv="refresh" content="5"> <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .data-box { border: 2px solid #007bff; padding: 20px; border-radius: 10px; display: inline-block; }
-        .umidade { font-size: 3em; font-weight: bold; color: #28a745; }
+    <meta http-equiv="refresh" content="5">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .data-box {
+            border: 2px solid #f9a826;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .umidade {
+            font-size: 3em;
+            font-weight: bold;
+            color: #f9a826;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 120px;
+        }
     </style>
 </head>
 <body>
-    <h1>Servidor de Monitoramento de Solo</h1>
-    
+    <img src="{{ url_for('static', filename='Sr.Vaso.png') }}" alt="Logo do Projeto" class="logo">
+    <h1>Sr. Vaso - Teste 6: Umidade do solo</h1>
     <div class="data-box">
         <h2>Última Umidade do Solo Recebida</h2>
         <p class="umidade">{{ data.umidade_solo }}</p>
         <p>Última atualização: <em>{{ data.timestamp }}</em></p>
     </div>
-
     <p>Para enviar dados, a ESP32 deve fazer um POST para http://[IP_DO_SEU_PC]:5000/dados</p>
 </body>
 </html>
+

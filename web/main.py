@@ -25,7 +25,7 @@ def receber_dados():
     # 3. Processa e armazena os dados
     if 'umidade' in dados_recebidos:
         
-        # Simplesmente armazena o valor (você pode adicionar validação aqui)
+        # Simplesmente armazena o valor 
         umidade = dados_recebidos['umidade']
         
         # Atualiza a variável global

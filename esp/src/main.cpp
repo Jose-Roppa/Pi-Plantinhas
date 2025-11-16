@@ -7,9 +7,9 @@
 #define A0 36
 #define D0 5
 
-const char* ssid = "ZTE_2.4G_YfxD27";
-const char* password = "DS5skSNc";
-const char* flask_server_ip = "192.168.1.8";
+const char* ssid = "iPhone JD"; //"ZTE_2.4G_YfxD27";
+const char* password = "jdstass07"; //DS5skSNc";
+const char* flask_server_ip = "172.20.10.4"; // http://172.20.10.4:5000 "192.168.1.8";
 const int flask_port = 5000;
 const char* endpoint = "/dados"; 
 
@@ -69,7 +69,6 @@ void enviarDadosAoServidor() {
       Serial.print("Código de Resposta HTTP: ");
       Serial.println(httpResponseCode);
       
-      // Se quiser ver a mensagem de sucesso (Ex: "Dados recebidos com sucesso!")
       String response = http.getString();
       Serial.println("Resposta do Servidor:");
       Serial.println(response);
@@ -78,7 +77,6 @@ void enviarDadosAoServidor() {
       Serial.println(httpResponseCode);
     }
 
-    // Fecha a conexão HTTP
     http.end();
   } else {
     Serial.println("WiFi desconectado. Não foi possível enviar dados.");
