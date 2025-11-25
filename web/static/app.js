@@ -463,22 +463,28 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Pequeno banco de dicas mocado por planta
+    // Pequeno banco de dicas mocado por planta (mais completo)
     const plantTips = {
         '1': [ // Tulipa
-            'Tulipas gostam de clima mais fresco e solo levemente úmido. Evite deixar a terra encharcada.',
-            'Mantenha a tulipa em um local com bastante luz indireta e longe de sol forte da tarde.',
-            'Para tulipas, prefira vasos com boa drenagem e coloque uma camada de pedrinhas no fundo.'
+            'Tulipas gostam de clima mais fresco e solo levemente úmido: regue quando os 2–3 cm de superfície estiverem secos, evitando encharcar.',
+            'Mantenha a tulipa em um local com bastante luz indireta e, se pegar sol, que seja o da manhã, mais fraco.',
+            'Para tulipas, use um vaso com boa drenagem, furos no fundo e, se possível, uma camada de pedrinhas ou argila expandida.',
+            'Durante os períodos mais quentes, verifique o solo com mais frequência: tulipas sofrem com calor excessivo e solo seco por muito tempo.',
+            'Após a floração, reduza a rega aos poucos e deixe as folhas secarem naturalmente para que o bulbo recarregue energia.'
         ],
         '2': [ // Suculenta
-            'Suculentas preferem pouca água: espere o solo secar totalmente antes de regar novamente.',
-            'Dê bastante luz para suas suculentas. Janelas bem iluminadas são ótimas, desde que o sol não seja extremo.',
-            'Use um substrato bem drenado para suculentas, com areia ou perlita misturada à terra.'
+            'Suculentas preferem pouca água: só regue quando o solo estiver completamente seco, geralmente a cada 10–20 dias, dependendo do clima.',
+            'Dê bastante luz para suas suculentas. Janelas bem iluminadas são ótimas; se o sol for muito forte, introduza aos poucos para evitar queimaduras.',
+            'Use um substrato super drenado para suculentas, misturando terra com areia grossa ou perlita para não acumular água nas raízes.',
+            'Se as folhas da suculenta estiverem muito alongadas e finas, é sinal de pouca luz: tente aproximar de uma janela mais clara.',
+            'Retire sempre o excesso de água do pratinho após a rega. Raízes de suculentas apodrecem com facilidade em solo encharcado.'
         ],
         '3': [ // Orquídeas
-            'Orquídeas gostam de umidade no ar, mas não de raízes encharcadas. Borrife água nas folhas com moderação.',
-            'Coloque sua orquídea em local de luz indireta forte, como perto de uma janela com cortina fina.',
-            'Use vasos próprios para orquídeas e substrato com casca de pinus, que permite boa circulação de ar nas raízes.'
+            'Orquídeas gostam de umidade no ar, mas não de raízes encharcadas: regue quando as raízes estiverem mais claras e o substrato quase seco.',
+            'Coloque sua orquídea em local de luz indireta forte, como perto de uma janela com cortina fina; folhas muito escuras indicam pouca luz.',
+            'Use vasos próprios para orquídeas e substrato com casca de pinus ou fibra de coco, que permitem boa circulação de ar nas raízes.',
+            'Evite deixar água acumulada no “miolo” das folhas da orquídea após borrifar, pois isso pode favorecer fungos e apodrecimento.',
+            'Adube a orquídea em pequenas doses, porém com regularidade (por exemplo, a cada 15 dias), sempre seguindo a diluição indicada no rótulo.'
         ]
     };
 
@@ -498,35 +504,106 @@ document.addEventListener('DOMContentLoaded', function() {
         const ctx = getCurrentPlantContext();
         const typeKey = String(ctx.plantTypeId || '');
 
-        // Regras bem simples para protótipo
+        // ==================== REGA ====================
         if (q.includes('regar') || q.includes('rega')) {
+            if (typeKey === '1') {
+                return `Ótima pergunta! Para tulipas, você deve regar quando os 2 a 3 centímetros superiores do solo estiverem secos ao toque. Enfie o dedo na terra para testar! As tulipas gostam de solo levemente úmido, mas tome cuidado: encharcar demais pode apodrecer o bulbo. Em geral, regue 2-3 vezes por semana, mas sempre verifique antes.`;
+            }
             if (typeKey === '2') {
-                return `Para suculentas, o ideal é regar somente quando o solo estiver bem seco. Evite deixar água acumulada no pratinho.`;
+                return `Suculentas são campeãs da sobrevivência! Elas armazenam água nas folhas, então precisam de muito pouca rega. A regra de ouro: só regue quando o solo estiver COMPLETAMENTE seco - isso pode levar de 10 a 20 dias dependendo do clima. E o mais importante: nunca deixe água parada no pratinho, senão as raízes apodrecem rapidinho!`;
             }
             if (typeKey === '3') {
-                return `Orquídeas preferem umidade constante, mas sem encharcar. Borrife água nas raízes e folhas 2 a 3 vezes por semana.`;
+                return `Orquídeas são um pouquinho mais exigentes com a água! Elas gostam de umidade, mas odeiam raízes encharcadas. Observe as raízes pelo vaso transparente: se estiverem esbranquiçadas ou prateadas, é hora de regar. Se estão verdes, ainda têm água suficiente. Você também pode borrifar água nas folhas e raízes aéreas 2-3 vezes por semana para manter a umidade.`;
             }
-            // Tulipa ou genérico
-            return getRandomTipForPlant(ctx);
+            return `A dica geral é regar quando a camada superficial do solo estiver seca ao toque. Teste com o dedo! E sempre evite deixar água parada no pratinho ou encharcar demais a planta.`;
         }
 
+        // ==================== LUZ / SOL ====================
         if (q.includes('luz') || q.includes('sol') || q.includes('claridade')) {
-            return getRandomTipForPlant(ctx);
+            if (typeKey === '1') {
+                return `Tulipas adoram bastante luz, mas preferen algo mais suave! O ideal é colocá-las em um lugar com luz indireta ou sol da manhã, que é mais fraquinho. Evite o sol forte da tarde, principalmente no verão, pois pode queimar as folhas e estressar a planta. Uma janela voltada para leste ou norte costuma ser perfeita!`;
+            }
+            if (typeKey === '2') {
+                return `Suculentas são fãs de luz! Quanto mais luz, melhor (dentro do razoável, claro). Coloque-as em janelas bem iluminadas - até sol direto funciona bem. Mas atenção: se você acabou de comprar a planta ou ela estava em um lugar escuro, introduza ao sol aos poucos para evitar queimaduras. Se as folhas começarem a ficar alongadas e finas, é sinal de que precisam de mais luz!`;
+            }
+            if (typeKey === '3') {
+                return `Orquídeas gostam de muita luz, mas de forma indireta! O ideal é perto de uma janela com cortina fina ou em locais bem iluminados sem sol direto. Dica prática: observe as folhas. Se estiverem verde-escuras, precisam de mais luz. Se ficarem amareladas ou com manchas marrons, pode ser sol demais. Verde-claro é o tom ideal!`;
+            }
+            return `A maioria das plantas prefere luz indireta. Uma dica: observe as folhas! Se ficarem muito escuras ou a planta começar a se alongar demais, ela precisa de mais luz. Se amarelarem ou aparecerem manchas, pode ser excesso de sol direto.`;
         }
 
+        // ==================== ADUBAÇÃO / NUTRIÇÃO ====================
         if (q.includes('adubo') || q.includes('fertiliz') || q.includes('nutri')) {
-            return `Use um adubo equilibrado (NPK) a cada 30–45 dias em pequena quantidade. Sempre regue um pouco antes de aplicar adubo para não queimar as raízes.`;
+            if (typeKey === '1') {
+                return `Para tulipas, o segredo está na época certa! Durante a floração, use um adubo com mais fósforo (o "P" do NPK) e menos nitrogênio - algo como NPK 10-20-10 funciona bem. Aplique a cada 15-20 dias enquanto ela está florida. Depois que as flores caem, vá reduzindo aos poucos para o bulbo descansar e recarregar energia para a próxima floração.`;
+            }
+            if (typeKey === '2') {
+                return `Suculentas são bem tranquilas com adubo - na verdade, elas precisam de pouquinho! Use um adubo NPK equilibrado (tipo 10-10-10) mas SEMPRE dilua na metade da dose recomendada. Aplique a cada 45 a 60 dias na primavera e verão, que é quando crescem mais. No inverno, pode até pausar a adubação, pois elas ficam mais "dormentes".`;
+            }
+            if (typeKey === '3') {
+                return `Orquídeas amam o ditado "pouco e sempre"! Elas se beneficiam muito de adubação frequente, mas em doses bem pequenas. Use um NPK 20-20-20 bem diluído (tipo 1/4 da dose) a cada 15 dias. Super importante: sempre regue a planta uns 30 minutos ANTES de aplicar o adubo, para proteger as raízes delicadas. Existem também adubos específicos para orquídeas que são ótimos!`;
+            }
+            return `No geral, use um adubo equilibrado (NPK) a cada 30 a 45 dias durante a época de crescimento (primavera e verão). A dica de ouro: sempre regue a planta um pouquinho antes de aplicar o adubo - isso evita queimar as raízes. E nunca exagere na dose!`;
         }
 
+        // ==================== UMIDADE DO SOLO ====================
         if (q.includes('umidade') || q.includes('seco') || q.includes('molhado')) {
             if (ctx.humidity) {
-                return `A última leitura de umidade do solo foi de ${ctx.humidity}%. Se estiver abaixo de 30–40%, geralmente é um sinal de que está na hora de regar, dependendo da espécie.`;
+                if (typeKey === '2') {
+                    return `Vi aqui que a última leitura do sensor foi de ${ctx.humidity}%! Para suculentas, essa é uma informação super útil: você deve regar quando estiver abaixo de 20-25%. Se estiver acima de 40%, ainda está úmido demais - aguarde mais uns dias! Lembre-se: suculentas preferem passar sede do que ter excesso de água.`;
+                }
+                if (typeKey === '3') {
+                    return `Legal, o sensor está marcando ${ctx.humidity}%! Para orquídeas, a faixa ideal é entre 40-60% de umidade no substrato. Se está acima de 60%, espere mais um pouco antes de regar. Se está abaixo de 40%, pode ir regando! Uma dica: além do substrato, orquídeas adoram umidade no AR, então borrifar água ao redor ajuda bastante.`;
+                }
+                return `O sensor está registrando ${ctx.humidity}% de umidade no solo! Para a maioria das plantas, incluindo tulipas, o ideal é regar quando estiver entre 30-40%. Abaixo disso, é hora de regar. Acima de 50-60%, ainda tem água suficiente. Tulipas gostam de solo levemente úmido, então não deixe secar completamente!`;
             }
-            return `Mantenha o solo levemente úmido, nunca encharcado. É melhor regar um pouco com mais frequência do que exagerar de uma vez só.`;
+            return `Uma boa forma de checar é o teste do dedo: enfie o dedo uns 2-3 cm na terra. Se estiver seco, pode regar; se ainda está úmido, espere mais um pouco. O segredo é: melhor pecar pela falta do que pelo excesso! Solo encharcado é um dos maiores problemas para plantas em vaso.`;
         }
 
-        // Dica genérica, mas respeitando a planta selecionada
-        return getRandomTipForPlant(ctx) + ' Se quiser, pergunte sobre "quando regar", "luz ideal" ou "adubação".';
+        // ==================== VASO / SUBSTRATO ====================
+        if (q.includes('vaso') || q.includes('substrato') || q.includes('terra') || q.includes('drenagem')) {
+            if (typeKey === '1') {
+                return `Tulipas são exigentes com drenagem! Use sempre vasos com furos no fundo - isso é essencial. Uma dica legal: coloque uma camada de pedrinhas, argila expandida ou até cacos de telha no fundo antes de colocar a terra. Isso ajuda a drenar melhor e evita que o bulbo fique encharcado. O substrato ideal é leve e aerado, tipo uma mistura de terra vegetal com um pouco de areia.`;
+            }
+            if (typeKey === '2') {
+                return `Suculentas odeiam água parada! Então o substrato precisa ser SUPER drenante. A receita caseira é: misture terra comum com areia grossa (de construção, bem lavada) ou perlita, na proporção de 1:1. Vasos com furos no fundo são obrigatórios - nada de cachepôs fechados! Vasos de barro são ótimos porque "respiram" e ajudam a secar mais rápido.`;
+            }
+            if (typeKey === '3') {
+                return `Orquídeas são bem diferentes das outras plantas! Elas não gostam de terra comum. Use vasos TRANSPARENTES (para as raízes fazerem fotossíntese!) com furos na lateral e no fundo. O substrato ideal é casca de pinus, fibra de coco ou carvão vegetal - materiais que seguram um pouco de umidade mas deixam as raízes respirarem. Nunca plante orquídea em terra normal!`;
+            }
+            return `A regra número 1 para qualquer planta em vaso: sempre use vasos com furos no fundo! Isso evita que a água fique acumulada e apodreça as raízes. O substrato deve ser leve e bem drenante - você pode adicionar perlita ou areia grossa à terra comum para melhorar a drenagem.`;
+        }
+
+        // ==================== PRAGAS / PROBLEMAS ====================
+        if (q.includes('praga') || q.includes('bicho') || q.includes('mancha') || q.includes('folha amarela') || q.includes('apodrecendo')) {
+            if (typeKey === '1') {
+                return `Eita, tulipa com problemas? Vamos investigar! Folhas amareladas geralmente indicam excesso de água - reduza a rega. Se aparecerem manchas escuras ou mofo, pode ser fungo, que adora umidade. Nesse caso: remova as folhas doentes, melhore a ventilação do local e evite molhar as folhas ao regar. Se o bulbo estiver mole, infelizmente apodreceu e é melhor descartar.`;
+            }
+            if (typeKey === '2') {
+                return `Suculentas têm dois problemas principais: apodrecimento (por excesso de água) e cochonilhas (aqueles bichinhos brancos). Se a base está mole e escura, é podridão - corte a parte saudável, deixe cicatrizar por 2-3 dias e replante em substrato seco. Para cochonilhas, use um cotonete com álcool 70% para remover uma por uma, ou borrife óleo de neem diluído. Funciona super bem!`;
+            }
+            if (typeKey === '3') {
+                return `Orquídeas podem ter alguns probleminhas! Manchas escuras nas folhas geralmente são fungos - evite deixar água acumulada no "coração" da planta. Limpe as folhas com água e, se piorar, use fungicida específico. Cochonilhas e pulgões adoram orquídeas: limpe as folhas com um pano úmido com sabão neutro diluído. Se as raízes ficarem marrons e moles, estão apodrecendo - corte as ruins e reduza a rega.`;
+            }
+            return `Problemas nas plantas podem ter várias causas! Folhas amarelas geralmente = excesso de água ou falta de luz. Manchas escuras = fungos (reduza umidade). Bichinhos brancos = cochonilhas (use álcool 70%). Primeira medida: isole a planta das outras, remova partes muito afetadas e ajuste rega/luz. A maioria se recupera bem com cuidado!`;
+        }
+
+        // ==================== CLIMA / TEMPERATURA ====================
+        if (q.includes('calor') || q.includes('frio') || q.includes('temperatura') || q.includes('clima')) {
+            if (typeKey === '1') {
+                return `Tulipas são plantas de clima mais fresquinho! Elas se dão melhor em temperaturas entre 15-20°C. Se você mora em lugar quente, não desanime: coloque-as em ambientes mais frescos da casa (ar condicionado ajuda!), aumente um pouco a frequência de rega nos dias muito quentes e evite sol forte da tarde. Em clima frio (abaixo de 10°C), elas até gostam, mas proteja de geadas.`;
+            }
+            if (typeKey === '2') {
+                return `Suculentas são guerreiras do calor! Elas aguentam bem temperaturas altas, até 35°C tranquilamente. Mas se passar muito disso, dê uma sombra nas horas mais quentes (meio-dia às 15h). Já no frio, cuidado: abaixo de 5°C podem sofrer danos, então se mora em lugar que gela, leve para dentro ou proteja com plástico nas noites mais frias. A maioria das suculentas prefere entre 15-30°C.`;
+            }
+            if (typeKey === '3') {
+                return `Orquídeas gostam de temperatura agradável, entre 18-28°C - tipo clima de primavera! Elas não gostam de extremos: evite correntes de ar frio (cuidado com ar-condicionado muito forte) e também calor excessivo. Uma dica importante: em climas muito secos ou com ar-condicionado, a umidade do ar cai bastante. Borrife água ao redor da planta (não nas flores!) ou coloque uma bandeja com pedrinhas e água embaixo do vaso.`;
+            }
+            return `A maioria das plantas de interior prefere temperaturas amenas, entre 18-26°C - o conforto humano é parecido com o delas! Proteja do frio intenso (abaixo de 10°C) e também do sol forte nas horas mais quentes. Mudanças bruscas de temperatura também estressam as plantas, então evite colocá-las perto de aquecedores ou ar-condicionado direto.`;
+        }
+
+        // ==================== DICA GENÉRICA ====================
+        return `Claro, posso te ajudar! ${getRandomTipForPlant(ctx)} Se quiser saber mais, pode perguntar sobre "quando regar", "que tipo de luz", "como adubar", "que vaso usar" ou "problemas com a planta". Estou aqui para ajudar! 🌱`;
     }
 
     if (chatToggle && chatWindow && chatClose && chatForm && chatInput && chatMessages) {
